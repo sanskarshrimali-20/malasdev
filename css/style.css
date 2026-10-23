@@ -1,0 +1,231 @@
+/* Custom Styles & Dynamic Animations for Malas Dev */
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #030712;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+}
+
+/* Custom Selection */
+::selection {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Glow & Shadow Effects */
+.glow-effect {
+    box-shadow: 0 0 50px -12px rgba(59, 130, 246, 0.2);
+}
+
+.glow-effect-emerald {
+    box-shadow: 0 0 50px -12px rgba(16, 185, 129, 0.2);
+}
+
+.glow-effect-purple {
+    box-shadow: 0 0 50px -12px rgba(168, 85, 247, 0.2);
+}
+
+.glow-card:hover {
+    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.25);
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav {
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* Dynamic Particle Canvas */
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Terminal Animations */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-color: #3b82f6;
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+/* Pulse Glow Animation */
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Modal Animations */
+.modal-backdrop {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-hidden .modal-content {
+    transform: scale(0.95) translateY(10px);
+}
+
+.modal-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-visible .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+    display: flex;
+    flex-col-reverse: flex;
+    gap: 0.75rem;
+    max-width: 24rem;
+    width: calc(100% - 3rem);
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    display: flex;
+    items-center: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    border-radius: 0.75rem;
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    color: #f8fafc;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(120%);
+    opacity: 0;
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-success {
+    border-left: 4px solid #10b981;
+}
+
+.toast-info {
+    border-left: 4px solid #3b82f6;
+}
+
+.toast-warning {
+    border-left: 4px solid #f59e0b;
+}
+
+.toast-error {
+    border-left: 4px solid #ef4444;
+}
+
+/* Command Palette Search Styling */
+.cmd-k-badge {
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Active Nav Indicator */
+.nav-link.active {
+    color: #60a5fa !important;
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #818cf8);
+    border-radius: 2px;
+}
+
+/* Accordion Transition */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-content.open {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in-out;
+}
+
+/* Service Card Active Filter Transition */
+.filter-btn.active {
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Checkbox Custom styling */
+.custom-checkbox:checked {
+    background-color: #2563eb;
+    border-color: #3b82f6;
+}
+
+/* Terminal Text Utilities */
+.term-prompt { color: #3b82f6; }
+.term-cmd { color: #f8fafc; font-weight: 600; }
+.term-output { color: #94a3b8; }
+.term-success { color: #34d399; }
+.term-keyword { color: #c084fc; }
+.term-error { color: #f87171; }
