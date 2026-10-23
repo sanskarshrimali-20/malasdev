@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malas Dev | Custom Software & App Development Studio</title>
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -34,29 +41,14 @@
             }
         }
     </script>
-    <style>
-        /* Custom scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
-        }
-        .glow-effect {
-            box-shadow: 0 0 50px -12px rgba(59, 130, 246, 0.25);
-        }
-    </style>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white relative overflow-x-hidden">
 
-    <nav class="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+    <!-- Sticky Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-slate-800/80 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Brand Logo -->
@@ -72,16 +64,31 @@
 
                 <!-- Desktop Nav Links -->
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                    <a href="#services" class="text-slate-300 hover:text-blue-400 transition-colors">Services</a>
-                    <a href="#solutions" class="text-slate-300 hover:text-blue-400 transition-colors">Solutions</a>
-                    <a href="#compliance" class="text-slate-300 hover:text-blue-400 transition-colors">Legal & Compliance</a>
-                    <a href="#contact" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-md shadow-blue-600/20 hover:shadow-blue-500/40">
+                    <a href="#services" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">Services</a>
+                    <a href="#calculator" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">Estimator</a>
+                    <a href="#solutions" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">Architecture</a>
+                    <a href="#showcase" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">Showcase</a>
+                    <a href="#faqs" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">FAQs</a>
+                    <a href="#compliance" class="nav-link text-slate-300 hover:text-blue-400 transition-colors">Legal</a>
+                </div>
+
+                <!-- Right Actions: Quick Search & Contact CTA -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('cmd-palette-modal')" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 text-xs font-mono flex items-center space-x-2 transition-colors">
+                        <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400"></i>
+                        <span>Search</span>
+                        <kbd class="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-700 text-[10px] text-slate-300 cmd-k-badge">⌘K</kbd>
+                    </button>
+                    <a href="#contact" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all shadow-md shadow-blue-600/20 hover:shadow-blue-500/40">
                         Contact Us
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
+                <div class="md:hidden flex items-center space-x-2">
+                    <button onclick="openModal('cmd-palette-modal')" class="p-2 rounded-lg text-slate-400 hover:text-white bg-slate-900 border border-slate-800">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
                     <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
@@ -92,19 +99,26 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
             <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Services</a>
-            <a href="#solutions" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Solutions</a>
-            <a href="#compliance" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Legal & Compliance</a>
-            <a href="#contact" class="block w-full text-center mt-4 px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold">Contact Us</a>
+            <a href="#calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Cost Estimator</a>
+            <a href="#solutions" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Architecture</a>
+            <a href="#showcase" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Showcase</a>
+            <a href="#faqs" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">FAQs</a>
+            <a href="#compliance" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800">Legal Policies</a>
+            <a href="#contact" class="block w-full text-center mt-4 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold">Contact Us</a>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden min-h-[85vh] flex items-center">
+        <!-- Interactive Particle Canvas Background -->
+        <canvas id="particles-canvas"></canvas>
+
         <!-- Background Gradient Glows -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/15 blur-[120px] rounded-full pointer-events-none animate-pulse-glow"></div>
         <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-indigo-600/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-mono text-blue-400 mb-6 backdrop-blur-sm">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-xs font-mono text-blue-400 mb-6 backdrop-blur-md shadow-lg shadow-blue-500/5">
                 <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
                 <span>Umbrella Software & App Studio</span>
             </div>
@@ -114,125 +128,135 @@
             </h1>
             
             <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-                We engineer production-grade mobile apps, web applications, backend systems, and secure payment integrations tailored for multi-platform digital products.
+                We engineer production-grade mobile apps, web applications, backend cloud systems, and secure payment integrations tailored for multi-platform digital products.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-                <a href="#solutions" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg shadow-blue-600/30">
+                <a href="#services" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold flex items-center justify-center space-x-2 transition-all shadow-lg shadow-blue-600/30 hover:scale-[1.02]">
                     <span>Explore Solutions</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
-                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold transition-all">
-                    Get in Touch
+                <a href="#calculator" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-200 font-semibold transition-all flex items-center justify-center space-x-2">
+                    <i data-lucide="calculator" class="w-4 h-4 text-blue-400"></i>
+                    <span>Project Estimator</span>
                 </a>
             </div>
 
             <!-- Badges Banner -->
-            <div class="mt-16 pt-10 border-t border-slate-900 flex flex-wrap justify-center items-center gap-8 opacity-70 text-slate-400 text-sm font-mono">
-                <div class="flex items-center space-x-2">
+            <div class="mt-16 pt-10 border-t border-slate-900/80 flex flex-wrap justify-center items-center gap-8 opacity-80 text-slate-400 text-xs font-mono">
+                <div class="flex items-center space-x-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800/60">
                     <i data-lucide="smartphone" class="w-4 h-4 text-blue-400"></i>
-                    <span>Flutter Mobile Apps</span>
+                    <span>Flutter Cross-Platform</span>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800/60">
                     <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i>
                     <span>Supabase Cloud Infra</span>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800/60">
                     <i data-lucide="shield-check" class="w-4 h-4 text-purple-400"></i>
-                    <span>Payment Integration</span>
+                    <span>PhonePe & Razorpay SDK</span>
+                </div>
+                <div class="flex items-center space-x-2 bg-slate-900/50 px-3 py-1.5 rounded-lg border border-slate-800/60">
+                    <i data-lucide="mail" class="w-4 h-4 text-amber-400"></i>
+                    <span>Resend Automated SMTP</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Stats Section -->
+    <section id="stats-section" class="py-12 bg-slate-900/40 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800/60">
+                    <span id="stat-apps" class="text-3xl sm:text-4xl font-extrabold text-blue-400 font-mono">0</span>
+                    <span class="block text-slate-400 text-xs mt-1 font-medium">Delivered Applications</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800/60">
+                    <span id="stat-uptime" class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono">0</span>
+                    <span class="block text-slate-400 text-xs mt-1 font-medium">Cloud Infra Uptime</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800/60">
+                    <span id="stat-clients" class="text-3xl sm:text-4xl font-extrabold text-purple-400 font-mono">0</span>
+                    <span class="block text-slate-400 text-xs mt-1 font-medium">Client Satisfaction</span>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-950/60 border border-slate-800/60">
+                    <span id="stat-trans" class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono">0</span>
+                    <span class="block text-slate-400 text-xs mt-1 font-medium">Transactions Processed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Pricing Section -->
     <section id="services" class="py-20 bg-slate-950 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-12">
                 <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Our Expertise & Pricing</h2>
                 <p class="text-3xl font-bold text-white sm:text-4xl">Software Development Services</p>
                 <p class="text-slate-400 mt-3">From mobile application development to scalable backend API architecture, we deliver scalable end-to-end solutions.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service Card 1 -->
-                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 glow-effect group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="smartphone" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Custom Mobile Apps</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            High-performance cross-platform Flutter mobile applications for Android & iOS with smooth UX, deep linking, and native performance.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/60">
-                        <span class="text-xs text-slate-500 uppercase font-mono block">Starting at</span>
-                        <span class="text-xl font-bold text-blue-400">$1,499</span>
-                    </div>
+            <!-- Dynamic Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button data-category="all" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold filter-btn active bg-blue-600 text-white transition-all border border-blue-500">All Services</button>
+                <button data-category="mobile" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800">Mobile Apps</button>
+                <button data-category="web" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800">Web Platforms</button>
+                <button data-category="backend" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800">Cloud Backend</button>
+                <button data-category="payments" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-slate-400 hover:text-white transition-all border border-slate-800">Payments SDK</button>
+            </div>
+
+            <!-- Dynamic Services Grid -->
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Dynamically rendered via js/ui.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Project Estimator Calculator -->
+    <section id="calculator" class="py-20 bg-slate-900/30 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Instant Pricing Tool</h2>
+                <p class="text-3xl font-bold text-white sm:text-4xl">Interactive Project Estimator</p>
+                <p class="text-slate-400 mt-3">Select your desired platforms and feature modules to calculate a real-time price estimate for your project.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <!-- Options Container -->
+                <div id="calculator-options-container">
+                    <!-- Dynamically rendered via js/ui.js -->
                 </div>
 
-                <!-- Service Card 2 -->
-                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 glow-effect group flex flex-col justify-between">
+                <!-- Total Bar & Action -->
+                <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-6 bg-slate-950/80 p-6 rounded-2xl border border-slate-800/80">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        <span class="text-xs font-mono text-slate-400 uppercase block">Estimated Project Cost</span>
+                        <div class="flex items-baseline space-x-2">
+                            <span id="calc-total-price" class="text-3xl sm:text-4xl font-extrabold text-blue-400 font-mono">$0</span>
+                            <span class="text-xs text-slate-500">(USD estimated base)</span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Web Applications</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Modern, responsive web platforms and dashboard frontends built with clean CSS, web frameworks, and secure authentication pipelines.
-                        </p>
                     </div>
-                    <div class="pt-4 border-t border-slate-800/60">
-                        <span class="text-xs text-slate-500 uppercase font-mono block">Starting at</span>
-                        <span class="text-xl font-bold text-blue-400">$999</span>
-                    </div>
-                </div>
 
-                <!-- Service Card 3 -->
-                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 glow-effect group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="server" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Cloud Backend Infra</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Supabase/Firebase architecture, Edge Functions, automated SMTP deliverability (Resend), and structured SQL database schema design.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/60">
-                        <span class="text-xs text-slate-500 uppercase font-mono block">Starting at</span>
-                        <span class="text-xl font-bold text-blue-400">$799</span>
-                    </div>
-                </div>
-
-                <!-- Service Card 4 -->
-                <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 glow-effect group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-6 group-hover:scale-110 transition-transform">
-                            <i data-lucide="credit-card" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Payment Gateways</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Seamless integration of mobile payment gateways (PhonePe Business SDK, Razorpay) with backend webhooks and signature verification.
-                        </p>
-                    </div>
-                    <div class="pt-4 border-t border-slate-800/60">
-                        <span class="text-xs text-slate-500 uppercase font-mono block">Starting at</span>
-                        <span class="text-xl font-bold text-blue-400">$499</span>
-                    </div>
+                    <button id="calc-apply-quote-btn" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Apply Quote & Get Started</span>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="solutions" class="py-20 bg-slate-900/30 border-y border-slate-800/60">
+    <!-- Architecture & Interactive Terminal Section -->
+    <section id="solutions" class="py-20 bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Details -->
                 <div>
                     <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Architectural Excellence</h2>
                     <h3 class="text-3xl font-bold text-white mb-6">Multi-App Umbrella Architecture</h3>
                     <p class="text-slate-300 mb-6 leading-relaxed">
-                        At <strong class="text-white">Malas Dev</strong>, we engineer digital products designed to operate smoothly under a centralized entity. Whether launching consumer mobile tools, utility products, or digital subscriptions, our infrastructure guarantees high availability and compliance.
+                        At <strong class="text-white">Malas Dev</strong>, we engineer digital products designed to operate smoothly under a centralized entity. Whether launching consumer mobile tools, utility products, or digital subscriptions, our infrastructure guarantees high availability and merchant compliance.
                     </p>
 
                     <div class="space-y-4">
@@ -252,7 +276,7 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-semibold">Regulated Payment Gateways</h4>
-                                <p class="text-slate-400 text-sm">Full compliance readiness with active legal policies and merchant SDK integrations.</p>
+                                <p class="text-slate-400 text-sm">Full compliance readiness with active legal policies and merchant SDK integrations (PhonePe, Razorpay).</p>
                             </div>
                         </div>
 
@@ -268,38 +292,62 @@
                     </div>
                 </div>
 
-                <!-- Code / Terminal Visual -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl font-mono text-xs text-slate-300">
-                    <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-                        <div class="flex items-center space-x-2">
-                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
-                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                        </div>
-                        <span class="text-slate-500 text-[11px]">malasdev_architecture.config.ts</span>
-                    </div>
-                    <div class="p-6 space-y-3 overflow-x-auto">
-                        <p><span class="text-purple-400">export const</span> <span class="text-blue-400">MalasDevConfig</span> = {</p>
-                        <p class="pl-4"><span class="text-slate-400">domain:</span> <span class="text-emerald-400">'malasdev.online'</span>,</p>
-                        <p class="pl-4"><span class="text-slate-400">developer:</span> <span class="text-emerald-400">'Sanskar Shrimali'</span>,</p>
-                        <p class="pl-4"><span class="text-slate-400">stack:</span> [<span class="text-emerald-400">'Flutter'</span>, <span class="text-emerald-400">'Supabase'</span>, <span class="text-emerald-400">'PhonePe SDK'</span>, <span class="text-emerald-400">'Resend'</span>],</p>
-                        <p class="pl-4"><span class="text-slate-400">security:</span> {</p>
-                        <p class="pl-8"><span class="text-slate-400">dmarc:</span> <span class="text-blue-400">true</span>,</p>
-                        <p class="pl-8"><span class="text-slate-400">dkimVerified:</span> <span class="text-blue-400">true</span>,</p>
-                        <p class="pl-8"><span class="text-slate-400">sslEncryption:</span> <span class="text-emerald-400">'TLS 1.3'</span></p>
-                        <p class="pl-4">},</p>
-                        <p class="pl-4"><span class="text-slate-400">compliance:</span> {</p>
-                        <p class="pl-8"><span class="text-slate-400">termsOfService:</span> <span class="text-blue-400">true</span>,</p>
-                        <p class="pl-8"><span class="text-slate-400">privacyPolicy:</span> <span class="text-blue-400">true</span>,</p>
-                        <p class="pl-8"><span class="text-slate-400">refundPolicy:</span> <span class="text-blue-400">true</span></p>
-                        <p class="pl-4">}</p>
-                        <p>};</p>
-                    </div>
+                <!-- Right: Interactive Terminal Widget -->
+                <div id="interactive-terminal" class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                    <!-- Dynamically rendered via js/terminal.js -->
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Digital Products & Showcase Section -->
+    <section id="showcase" class="py-20 bg-slate-900/30 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Our Portfolio</h2>
+                <p class="text-3xl font-bold text-white sm:text-4xl">Featured Solutions & Digital Products</p>
+                <p class="text-slate-400 mt-3">Explore some of our recent custom applications, cloud architectures, and payment implementations.</p>
+            </div>
+
+            <!-- Dynamic Portfolio Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dynamically rendered via js/ui.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Client Feedback</h2>
+                <p class="text-3xl font-bold text-white sm:text-4xl">Trusted by Founders & Product Leads</p>
+                <p class="text-slate-400 mt-3">Here is what clients say about working with Malas Dev Studios.</p>
+            </div>
+
+            <!-- Dynamic Testimonials Grid -->
+            <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dynamically rendered via js/ui.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-20 bg-slate-900/30 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-mono tracking-widest text-blue-400 uppercase mb-2">Common Questions</h2>
+                <p class="text-3xl font-bold text-white sm:text-4xl">Frequently Asked Questions</p>
+                <p class="text-slate-400 mt-3">Find instant answers about our technology stack, development timeline, and pricing model.</p>
+            </div>
+
+            <div id="faqs-container">
+                <!-- Dynamically rendered via js/ui.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal & Compliance Section -->
     <section id="compliance" class="py-20 bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
@@ -363,6 +411,7 @@
         </div>
     </section>
 
+    <!-- Contact & Lead Form Section -->
     <section id="contact" class="py-20 bg-slate-900/50 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -419,14 +468,14 @@
 
                 <!-- Right Form -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8">
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <form id="contact-form" class="space-y-4">
                         <div>
-                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Your Name</label>
+                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Your Name *</label>
                             <input type="text" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Email Address</label>
+                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Email Address *</label>
                             <input type="email" required placeholder="name@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors">
                         </div>
 
@@ -436,16 +485,17 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Message / Inquiry</label>
-                            <textarea rows="4" required placeholder="How can we help you?" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"></textarea>
+                            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Message / Inquiry *</label>
+                            <textarea rows="4" required placeholder="Describe your project requirements or question..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"></textarea>
                         </div>
 
                         <button type="submit" class="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all shadow-lg shadow-blue-600/20">
                             Send Message
                         </button>
                     </form>
+
                     <div id="form-success" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm text-center">
-                        Thank you! Your message has been recorded. We will respond via email.
+                        Thank you! Your message has been recorded. We will respond via email shortly.
                     </div>
                 </div>
             </div>
@@ -475,11 +525,11 @@
     </footer>
 
     <!-- Privacy Policy Modal -->
-    <div id="privacy-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+    <div id="privacy-modal" class="fixed inset-0 z-50 modal-hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
+        <div class="modal-content bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                 <h3 class="font-bold text-white text-lg">Privacy Policy</h3>
-                <button onclick="closeModal('privacy-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button onclick="closeModal('privacy-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 leading-relaxed">
                 <p class="text-xs font-mono text-blue-400">Last updated: September 2026</p>
@@ -494,17 +544,17 @@
                 <p>For any privacy inquiries, reach us at <a href="mailto:support@malasdev.online" class="text-blue-400 underline">support@malasdev.online</a>.</p>
             </div>
             <div class="px-6 py-3 border-t border-slate-800 bg-slate-950 text-right">
-                <button onclick="closeModal('privacy-modal')" class="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold">Close</button>
+                <button onclick="closeModal('privacy-modal')" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold">Close</button>
             </div>
         </div>
     </div>
 
     <!-- Terms & Conditions Modal -->
-    <div id="terms-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+    <div id="terms-modal" class="fixed inset-0 z-50 modal-hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
+        <div class="modal-content bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                 <h3 class="font-bold text-white text-lg">Terms & Conditions</h3>
-                <button onclick="closeModal('terms-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button onclick="closeModal('terms-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 leading-relaxed">
                 <p class="text-xs font-mono text-blue-400">Last updated: September 2026</p>
@@ -517,17 +567,17 @@
                 <p>All source code, software design, trademarks, and branding under Malas Dev (operated by Sanskar Shrimali) remain the exclusive property of Malas Dev Studios.</p>
             </div>
             <div class="px-6 py-3 border-t border-slate-800 bg-slate-950 text-right">
-                <button onclick="closeModal('terms-modal')" class="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold">Close</button>
+                <button onclick="closeModal('terms-modal')" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold">Close</button>
             </div>
         </div>
     </div>
 
     <!-- Refund & Cancellation Modal -->
-    <div id="refund-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+    <div id="refund-modal" class="fixed inset-0 z-50 modal-hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
+        <div class="modal-content bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                 <h3 class="font-bold text-white text-lg">Refund & Cancellation Policy</h3>
-                <button onclick="closeModal('refund-modal')" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+                <button onclick="closeModal('refund-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <div class="p-6 overflow-y-auto space-y-4 text-sm text-slate-300 leading-relaxed">
                 <p class="text-xs font-mono text-blue-400">Last updated: September 2026</p>
@@ -540,46 +590,53 @@
                 <p>If a payment fails or double debit occurs during a transaction, automated reconciliation will refund the amount within 5–7 business days to the original payment method. For payment disputes, contact <a href="mailto:support@malasdev.online" class="text-blue-400 underline">support@malasdev.online</a>.</p>
             </div>
             <div class="px-6 py-3 border-t border-slate-800 bg-slate-950 text-right">
-                <button onclick="closeModal('refund-modal')" class="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold">Close</button>
+                <button onclick="closeModal('refund-modal')" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold">Close</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+    <!-- Project Details Preview Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 modal-hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
+        <div class="modal-content bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+                <h3 id="project-modal-title" class="font-bold text-white text-lg">Project Details</h3>
+                <button onclick="closeModal('project-modal')" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="project-modal-body" class="p-6 overflow-y-auto">
+                <!-- Dynamically filled via js/ui.js -->
+            </div>
+            <div class="px-6 py-3 border-t border-slate-800 bg-slate-950 text-right">
+                <button onclick="closeModal('project-modal')" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold">Close</button>
+            </div>
+        </div>
+    </div>
 
-        // Update year
-        document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- Command Palette Search Modal (Ctrl + K) -->
+    <div id="cmd-palette-modal" class="fixed inset-0 z-50 modal-hidden bg-slate-950/85 backdrop-blur-md flex items-start justify-center pt-20 p-4 transition-all duration-300">
+        <div class="modal-content bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full shadow-2xl overflow-hidden flex flex-col">
+            <div class="px-4 py-3 border-b border-slate-800 flex items-center space-x-3">
+                <i data-lucide="search" class="w-5 h-5 text-blue-400 flex-shrink-0"></i>
+                <input type="text" id="cmd-input" placeholder="Type a command or search action..." class="w-full bg-transparent text-slate-100 placeholder-slate-500 focus:outline-none text-sm font-medium" />
+                <kbd class="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-[10px] text-slate-400 font-mono">ESC</kbd>
+            </div>
+            <div id="cmd-results" class="p-2 max-h-80 overflow-y-auto space-y-1">
+                <!-- Dynamically filled via js/ui.js -->
+            </div>
+            <div class="px-4 py-2 bg-slate-950 border-t border-slate-800/80 text-[11px] font-mono text-slate-500 flex items-center justify-between">
+                <span>Malas Dev Quick Command Palette</span>
+                <span>Press <kbd class="text-slate-400">ESC</kbd> to exit</span>
+            </div>
+        </div>
+    </div>
 
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+    <!-- Floating Toast Notification Container -->
+    <div id="toast-container"></div>
 
-        // Modal Controls
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Contact Form Mock Submission
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            document.getElementById('contact-form').reset();
-            const successBox = document.getElementById('form-success');
-            successBox.classList.remove('hidden');
-            setTimeout(() => {
-                successBox.classList.add('hidden');
-            }, 5000);
-        }
-    </script>
+    <!-- JavaScript Application Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
